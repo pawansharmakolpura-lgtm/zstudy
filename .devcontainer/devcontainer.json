@@ -1,0 +1,12 @@
+{
+  "name": "Flutter Android Setup",
+  "image": "ghcr.io/cirruslabs/flutter:stable",
+  "customizations": {
+    "vscode": {
+      "extensions":[
+        "dart-code.flutter",
+        "dart-code.dart-code"
+      ]
+    }
+  }
+}

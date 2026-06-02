@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Zstudy — Learn Smarter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary: #4318FF;
+  --primary-light: #6B46FF;
+  --secondary: #007BFF;
+  --accent: #8B5CF6;
+  --red: #FF4D6D;
+  --red-light: #FF758C;
+  --yellow: #FFB703;
+  --yellow-light: #FFCA3A;
+  --green: #06D6A0;
+  --green-light: #38EFC2;
+  --bg: #F5F6FA;
+  --bg2: #EAECF4;
+  --card: #FFFFFF;
+  --text: #1A1D2E;
+  --text2: #5A607F;
+  --text3: #9FA5C0;
+  --border: #E2E5F1;
+  --shadow: 0 4px 24px rgba(67,24,255,0.08);
+  --shadow-lg: 0 8px 40px rgba(67,24,255,0.14);
+  --radius: 18px;
+  --nav-h: 82px;
+  --top-h: 64px;
+  --glass: rgba(255,255,255,0.82);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Poppins',sans-serif}
+a{text-decoration:none;color:inherit}
+button{font-family:'Inter',sans-serif;cursor:pointer;border:none;outline:none}
+input,textarea,select{font-family:'Inter',sans-serif;outline:none}
+img{max-width:100%}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* TOP BAR */
+#topbar{
+  position:fixed;top:0;left:0;right:0;height:var(--top-h);z-index:100;
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+  gap:12px;
+}
+.topbar-logo{display:flex;align-items:center;gap:8px;cursor:pointer}
+.topbar-logo .goat-icon{
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;
+  box-shadow:0 4px 12px rgba(67,24,255,0.3);
+}
+.topbar-logo span{font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;color:var(--primary)}
+.topbar-actions{display:flex;align-items:center;gap:10px}
+.cart-btn{
+  position:relative;width:40px;height:40px;border-radius:12px;
+  background:var(--bg2);display:flex;align-items:center;justify-content:center;
+  color:var(--text2);font-size:16px;transition:.2s;
+}
+.cart-btn:hover{background:var(--primary);color:#fff}
+.cart-badge{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--red);color:#fff;font-size:10px;font-weight:700;
+  border-radius:10px;min-width:18px;height:18px;padding:0 4px;
+  display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);
+}
+.search-btn{
+  width:40px;height:40px;border-radius:12px;
+  background:var(--bg2);display:flex;align-items:center;justify-content:center;
+  color:var(--text2);font-size:16px;transition:.2s;
+}
+.search-btn:hover{background:var(--primary);color:#fff}
+
+/* BOTTOM NAV */
+#bottomnav{
+  position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);z-index:100;
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-around;padding:0 8px;padding-bottom:env(safe-area-inset-bottom);
+}
+.nav-item{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:8px 10px;border-radius:12px;transition:.2s;cursor:pointer;
+  font-size:10px;font-weight:600;color:var(--text3);min-width:48px;
+  background:transparent;
+}
+.nav-item i{font-size:20px;transition:.2s}
+.nav-item.active{color:var(--primary)}
+.nav-item.active i{color:var(--primary)}
+.nav-item:hover{background:var(--bg2)}
+.nav-fab{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#fff;font-size:22px;box-shadow:0 6px 20px rgba(67,24,255,0.4);
+  transition:.2s;margin-top:-20px;
+  flex-shrink:0;
+}
+.nav-fab:hover{transform:scale(1.08);box-shadow:0 8px 28px rgba(67,24,255,0.5)}
+.nav-fab span{font-size:8px;font-weight:700;margin-top:1px}
+
+/* MAIN CONTENT */
+#main{
+  padding-top:calc(var(--top-h) + 12px);
+  padding-bottom:calc(var(--nav-h) + 16px);
+  min-height:100vh;
+}
+
+/* PAGES */
+.page{display:none;padding:0 14px;animation:fadeUp .3s ease}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION HEADER */
+.section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:0 2px}
+.section-hdr h2{font-size:20px;font-weight:700}
+.section-hdr a,.section-hdr button{font-size:13px;color:var(--primary);font-weight:600;background:none;padding:4px 8px;border-radius:8px}
+.section-hdr a:hover,.section-hdr button:hover{background:var(--bg2)}
+
+/* HERO CARD */
+.hero-card{
+  background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);
+  border-radius:var(--radius);padding:24px;color:#fff;margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.hero-card::before{
+  content:'';position:absolute;right:-30px;top:-30px;
+  width:160px;height:160px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+}
+.hero-card::after{
+  content:'';position:absolute;right:40px;bottom:-40px;
+  width:100px;height:100px;border-radius:50%;
+  background:rgba(255,255,255,0.06);
+}
+.hero-card h1{font-size:22px;font-weight:800;margin-bottom:6px;position:relative}
+.hero-card p{font-size:14px;opacity:0.85;margin-bottom:16px;position:relative;line-height:1.5}
+.hero-stats{display:flex;gap:16px;position:relative}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800}
+.hero-stat .lbl{font-size:11px;opacity:0.8;font-weight:500}
+
+/* COLORED CARDS (red/yellow/green alternating) */
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.color-card{
+  border-radius:var(--radius);padding:18px 14px;color:#fff;cursor:pointer;
+  transition:.2s;position:relative;overflow:hidden;min-height:130px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.color-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.color-card.red{background:linear-gradient(135deg,var(--red),var(--red-light))}
+.color-card.yellow{background:linear-gradient(135deg,var(--yellow),var(--yellow-light));color:#1A1D2E}
+.color-card.green{background:linear-gradient(135deg,#06D6A0,#0CB47E)}
+.color-card .card-icon{font-size:28px;margin-bottom:8px;opacity:0.9}
+.color-card h3{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px}
+.color-card p{font-size:11px;opacity:0.8;line-height:1.4}
+.color-card .card-count{
+  position:absolute;top:12px;right:12px;
+  background:rgba(255,255,255,0.25);border-radius:20px;
+  padding:2px 8px;font-size:11px;font-weight:700;
+}
+.color-card.yellow .card-count{background:rgba(0,0,0,0.12)}
+.color-card .card-arrow{font-size:20px;align-self:flex-end;opacity:0.7}
+
+/* CONTENT ITEM CARD */
+.item-card{
+  background:var(--card);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);transition:.2s;cursor:pointer;
+}
+.item-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.item-card-img{
+  height:120px;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;color:var(--text3);overflow:hidden;position:relative;
+}
+.item-card-img img{width:100%;height:100%;object-fit:cover}
+.item-card-img .price-badge{
+  position:absolute;top:8px;right:8px;
+  background:var(--primary);color:#fff;font-size:11px;font-weight:700;
+  border-radius:20px;padding:3px 10px;font-family:'Poppins',sans-serif;
+}
+.item-card-body{padding:12px}
+.item-card-body h4{font-size:14px;font-weight:700;margin-bottom:4px;line-height:1.3}
+.item-card-body p{font-size:12px;color:var(--text2);line-height:1.4;margin-bottom:8px}
+.item-card-meta{display:flex;align-items:center;justify-content:space-between}
+.item-meta-left{display:flex;gap:8px;align-items:center}
+.meta-tag{
+  background:var(--bg2);color:var(--text2);
+  font-size:10px;font-weight:600;border-radius:6px;padding:3px 7px;
+}
+.add-cart-btn{
+  width:30px;height:30px;border-radius:9px;
+  background:var(--primary);color:#fff;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;
+}
+.add-cart-btn:hover{background:var(--primary-light);transform:scale(1.1)}
+.add-cart-btn.in-cart{background:var(--green)}
+
+/* BACK HEADER */
+.back-hdr{
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+  padding:10px 0;
+}
+.back-btn{
+  width:36px;height:36px;border-radius:10px;background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text2);font-size:16px;box-shadow:var(--shadow);
+  flex-shrink:0;
+}
+.back-hdr h2{font-size:18px;font-weight:700}
+
+/* AUTH PAGES */
+.auth-container{max-width:400px;margin:0 auto;padding:20px 0}
+.auth-card{background:var(--card);border-radius:var(--radius);padding:28px 20px;box-shadow:var(--shadow)}
+.auth-logo{text-align:center;margin-bottom:24px}
+.auth-logo .goat-icon-lg{
+  width:64px;height:64px;border-radius:20px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;
+  margin:0 auto 12px;box-shadow:0 6px 20px rgba(67,24,255,0.3);
+}
+.auth-logo h2{font-size:22px;font-weight:800;color:var(--primary)}
+.auth-logo p{font-size:13px;color:var(--text2);margin-top:4px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:12px;
+  font-size:14px;background:var(--bg);color:var(--text);transition:.2s;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--primary);background:#fff;box-shadow:0 0 0 4px rgba(67,24,255,0.08);
+}
+.form-group textarea{resize:vertical;min-height:80px}
+.btn-primary{
+  width:100%;padding:14px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;font-size:15px;font-weight:700;font-family:'Poppins',sans-serif;
+  transition:.2s;box-shadow:0 4px 16px rgba(67,24,255,0.3);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(67,24,255,0.4)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{
+  width:100%;padding:12px;border-radius:12px;
+  background:var(--bg2);color:var(--text);font-size:14px;font-weight:600;
+  transition:.2s;
+}
+.btn-secondary:hover{background:var(--border)}
+.auth-switch{text-align:center;margin-top:16px;font-size:13px;color:var(--text2)}
+.auth-switch a{color:var(--primary);font-weight:600}
+.divider{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--text3);font-size:12px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* WELCOME CARD */
+.welcome-card{
+  background:linear-gradient(135deg,var(--secondary) 0%,var(--primary) 100%);
+  border-radius:var(--radius);padding:20px;color:#fff;margin-bottom:20px;
+  display:flex;align-items:center;gap:16px;
+}
+.welcome-avatar{
+  width:52px;height:52px;border-radius:16px;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+  flex-shrink:0;
+}
+.welcome-text h2{font-size:18px;font-weight:800}
+.welcome-text p{font-size:13px;opacity:0.85;margin-top:3px}
+
+/* CART PAGE */
+.cart-item{
+  background:var(--card);border-radius:14px;padding:14px;
+  display:flex;align-items:center;gap:12px;margin-bottom:10px;
+  box-shadow:var(--shadow);
+}
+.cart-item-icon{
+  width:48px;height:48px;border-radius:12px;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  flex-shrink:0;
+}
+.cart-item-info{flex:1}
+.cart-item-info h4{font-size:14px;font-weight:700;margin-bottom:3px}
+.cart-item-info p{font-size:12px;color:var(--text2)}
+.cart-item-price{font-family:'Poppins',sans-serif;font-weight:800;color:var(--primary);font-size:15px}
+.cart-remove{
+  width:28px;height:28px;border-radius:8px;background:rgba(255,77,109,0.1);
+  color:var(--red);display:flex;align-items:center;justify-content:center;font-size:13px;
+}
+.cart-summary{
+  background:var(--card);border-radius:var(--radius);padding:20px;
+  box-shadow:var(--shadow);margin-top:16px;
+}
+.summary-row{display:flex;justify-content:space-between;margin-bottom:10px;font-size:14px}
+.summary-row.total{font-weight:700;font-size:16px;border-top:1px solid var(--border);padding-top:10px;margin-top:6px}
+
+/* PAYMENT PAGE */
+.payment-card{
+  background:var(--card);border-radius:var(--radius);padding:24px;
+  box-shadow:var(--shadow);text-align:center;
+}
+.qr-container{
+  background:var(--bg2);border-radius:16px;padding:16px;
+  display:inline-block;margin:16px 0;
+}
+.qr-container img{width:180px;height:180px;border-radius:8px}
+.payment-info{
+  background:rgba(67,24,255,0.06);border-radius:12px;padding:14px;
+  margin-bottom:16px;text-align:left;
+}
+.payment-info p{font-size:13px;color:var(--text2);line-height:1.7}
+.payment-info strong{color:var(--primary)}
+
+/* ADMIN TABS */
+.tab-bar{
+  display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;
+  scrollbar-width:none;padding-bottom:2px;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{
+  padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;
+  white-space:nowrap;background:var(--bg2);color:var(--text2);transition:.2s;
+}
+.tab-btn.active{background:var(--primary);color:#fff}
+
+/* ADMIN CONTENT LIST */
+.admin-item{
+  background:var(--card);border-radius:14px;padding:14px;
+  display:flex;align-items:center;gap:12px;margin-bottom:10px;
+  box-shadow:var(--shadow);
+}
+.admin-item-icon{
+  width:44px;height:44px;border-radius:12px;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  flex-shrink:0;overflow:hidden;
+}
+.admin-item-icon img{width:100%;height:100%;object-fit:cover}
+.admin-item-info{flex:1;min-width:0}
+.admin-item-info h4{font-size:14px;font-weight:700;margin-bottom:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.admin-item-info p{font-size:12px;color:var(--text2)}
+.admin-item-actions{display:flex;gap:6px;flex-shrink:0}
+.icon-btn{
+  width:32px;height:32px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+  transition:.2s;
+}
+.icon-btn.delete{background:rgba(255,77,109,0.1);color:var(--red)}
+.icon-btn.delete:hover{background:var(--red);color:#fff}
+.icon-btn.verify{background:rgba(6,214,160,0.1);color:var(--green)}
+.icon-btn.verify:hover{background:var(--green);color:#fff}
+.icon-btn.edit{background:rgba(0,123,255,0.1);color:var(--secondary)}
+.icon-btn.edit:hover{background:var(--secondary);color:#fff}
+
+/* STATUS BADGE */
+.status-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;font-weight:700;border-radius:20px;padding:3px 9px;
+}
+.status-badge.pending{background:rgba(255,183,3,0.15);color:#B07800}
+.status-badge.confirmed{background:rgba(6,214,160,0.15);color:#059669}
+.status-badge.rejected{background:rgba(255,77,109,0.15);color:#DC2626}
+
+/* QUIZ OVERLAY */
+.overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(26,29,46,0.5);backdrop-filter:blur(6px);
+  display:none;align-items:flex-end;
+  animation:fadeIn .2s ease;
+}
+.overlay.active{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.overlay-sheet{
+  width:100%;max-height:92vh;overflow-y:auto;
+  background:var(--bg);border-radius:24px 24px 0 0;
+  padding:24px 16px;padding-bottom:calc(24px + env(safe-area-inset-bottom));
+  animation:slideUp .3s ease;
+}
+@keyframes slideUp{from{transform:translateY(40px)}to{transform:translateY(0)}}
+.overlay-handle{
+  width:40px;height:4px;background:var(--border);border-radius:2px;
+  margin:0 auto 20px;
+}
+
+/* QUIZ */
+.quiz-progress{
+  background:var(--border);border-radius:20px;height:6px;margin-bottom:20px;overflow:hidden;
+}
+.quiz-progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:20px;transition:.4s}
+.quiz-question{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:20px;font-family:'Poppins',sans-serif}
+.quiz-option{
+  background:var(--card);border:2px solid var(--border);border-radius:14px;
+  padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.2s;
+  font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px;
+}
+.quiz-option:hover{border-color:var(--primary);background:rgba(67,24,255,0.04)}
+.quiz-option.correct{border-color:var(--green);background:rgba(6,214,160,0.08);color:#059669}
+.quiz-option.wrong{border-color:var(--red);background:rgba(255,77,109,0.08);color:var(--red)}
+.quiz-option.disabled{pointer-events:none}
+.option-letter{
+  width:28px;height:28px;border-radius:8px;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;
+}
+
+/* VIDEO PLAYER OVERLAY */
+.video-wrapper{
+  position:relative;width:100%;border-radius:16px;overflow:hidden;
+  background:#000;aspect-ratio:16/9;margin-bottom:16px;
+}
+.video-wrapper iframe{width:100%;height:100%;border:none}
+.episode-list .ep-item{
+  background:var(--card);border-radius:12px;padding:12px 14px;
+  display:flex;align-items:center;gap:12px;margin-bottom:8px;cursor:pointer;
+  transition:.2s;border:2px solid transparent;
+}
+.ep-item:hover{border-color:var(--primary)}
+.ep-item.active{border-color:var(--primary);background:rgba(67,24,255,0.04)}
+.ep-num{
+  width:32px;height:32px;border-radius:9px;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;
+  flex-shrink:0;color:var(--text2);
+}
+.ep-info{flex:1}
+.ep-info h5{font-size:13px;font-weight:700;margin-bottom:2px}
+.ep-info p{font-size:11px;color:var(--text3)}
+.ep-play-icon{color:var(--primary);font-size:18px}
+
+/* FLASH NOTIFICATIONS */
+#flash-container{
+  position:fixed;top:calc(var(--top-h) + 8px);left:50%;transform:translateX(-50%);
+  z-index:999;display:flex;flex-direction:column;gap:8px;width:calc(100% - 28px);max-width:380px;
+}
+.flash{
+  padding:12px 16px;border-radius:14px;font-size:14px;font-weight:600;
+  display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg);
+  animation:flashIn .3s ease,flashOut .3s ease 2.7s forwards;
+}
+@keyframes flashIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes flashOut{from{opacity:1}to{opacity:0;transform:translateY(-10px)}}
+.flash.success{background:#fff;border-left:4px solid var(--green);color:var(--text)}
+.flash.error{background:#fff;border-left:4px solid var(--red);color:var(--text)}
+.flash i{font-size:16px}
+.flash.success i{color:var(--green)}
+.flash.error i{color:var(--red)}
+
+/* LOADING */
+.loading-spinner{
+  display:flex;justify-content:center;align-items:center;padding:40px;
+}
+.spinner{
+  width:36px;height:36px;border:3px solid var(--border);
+  border-top-color:var(--primary);border-radius:50%;
+  animation:spin .6s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* EMPTY STATE */
+.empty-state{
+  text-align:center;padding:48px 20px;color:var(--text2);
+}
+.empty-state i{font-size:48px;color:var(--text3);margin-bottom:14px}
+.empty-state h3{font-size:17px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.empty-state p{font-size:13px;line-height:1.5}
+
+/* MOCK MODE BANNER */
+#mock-banner{
+  background:linear-gradient(135deg,#FF8C00,#FF4500);
+  color:#fff;font-size:12px;font-weight:600;
+  padding:8px 14px;text-align:center;
+  display:none;
+}
+
+/* FORM SECTION */
+.form-section{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
+.form-section h3{font-size:16px;font-weight:700;margin-bottom:16px;color:var(--text)}
+.question-block{
+  background:var(--bg2);border-radius:12px;padding:14px;margin-bottom:12px;position:relative;
+}
+.question-block .q-num{
+  font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;
+}
+.episode-block{
+  background:var(--bg2);border-radius:12px;padding:14px;margin-bottom:12px;position:relative;
+}
+.block-remove{
+  position:absolute;top:10px;right:10px;
+  width:26px;height:26px;border-radius:8px;
+  background:rgba(255,77,109,0.15);color:var(--red);
+  display:flex;align-items:center;justify-content:center;font-size:12px;
+}
+.add-block-btn{
+  width:100%;padding:10px;border-radius:12px;border:2px dashed var(--border);
+  background:transparent;color:var(--text2);font-size:13px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s;
+}
+.add-block-btn:hover{border-color:var(--primary);color:var(--primary);background:rgba(67,24,255,0.04)}
+
+/* ORDERS */
+.order-item{
+  background:var(--card);border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:var(--shadow);
+}
+.order-item .order-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.order-item .order-ref{font-size:11px;color:var(--text3);font-family:monospace}
+.order-items-list{font-size:12px;color:var(--text2);margin-bottom:10px}
+.order-footer{display:flex;align-items:center;justify-content:space-between}
+.order-total{font-family:'Poppins',sans-serif;font-weight:800;color:var(--primary)}
+
+/* RESPONSIVE TWEAKS */
+@media(max-width:360px){
+  .card-grid{grid-template-columns:1fr 1fr}
+  .color-card{min-height:110px;padding:14px 12px}
+}
+
+/* LIBRARY ITEM */
+.library-item{
+  background:var(--card);border-radius:14px;padding:12px;
+  display:flex;align-items:center;gap:12px;margin-bottom:10px;
+  box-shadow:var(--shadow);cursor:pointer;transition:.2s;
+}
+.library-item:hover{transform:translateX(4px)}
+.library-item-icon{
+  width:52px;height:52px;border-radius:12px;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+  flex-shrink:0;overflow:hidden;
+}
+.library-item-icon img{width:100%;height:100%;object-fit:cover}
+.library-item-info{flex:1;min-width:0}
+.library-item-info h4{font-size:14px;font-weight:700;margin-bottom:3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.library-item-info p{font-size:12px;color:var(--text2)}
+.library-item-badge{
+  background:rgba(67,24,255,0.08);color:var(--primary);
+  font-size:10px;font-weight:700;border-radius:6px;padding:2px 7px;
+}
+
+/* SCORE CARD */
+.score-card{
+  text-align:center;padding:30px 20px;background:var(--card);border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.score-circle{
+  width:100px;height:100px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin:0 auto 16px;color:#fff;box-shadow:0 8px 24px rgba(67,24,255,0.35);
+}
+.score-circle .score-num{font-family:'Poppins',sans-serif;font-size:28px;font-weight:800}
+.score-circle .score-lbl{font-size:11px;opacity:0.85}
+
+/* SEARCH INPUT */
+.search-input-wrap{
+  position:relative;margin-bottom:16px;
+}
+.search-input-wrap i{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  color:var(--text3);font-size:16px;
+}
+.search-input{
+  width:100%;padding:11px 14px 11px 40px;
+  border:2px solid var(--border);border-radius:14px;
+  background:var(--card);font-size:14px;color:var(--text);
+}
+.search-input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(67,24,255,0.08)}
+
+/* FILTER CHIPS */
+.filter-chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;scrollbar-width:none}
+.filter-chips::-webkit-scrollbar{display:none}
+.chip{
+  padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;
+  white-space:nowrap;background:var(--bg2);color:var(--text2);transition:.2s;cursor:pointer;
+}
+.chip.active{background:var(--primary);color:#fff}
+
+/* DETAIL VIEW */
+.detail-cover{
+  height:200px;background:var(--bg2);border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;font-size:56px;
+  margin-bottom:16px;overflow:hidden;
+}
+.detail-cover img{width:100%;height:100%;object-fit:cover}
+.detail-info{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.detail-title{font-size:20px;font-weight:800;margin-bottom:6px}
+.detail-desc{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:14px}
+.detail-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.detail-price{
+  font-family:'Poppins',sans-serif;font-size:24px;font-weight:800;color:var(--primary);margin-bottom:4px;
+}
+.detail-price-sub{font-size:12px;color:var(--text3)}
+
+</style>
+</head>
+<body>
+
+<!-- MOCK MODE BANNER -->
+<div id="mock-banner">⚠️ Firebase not configured — running in demo mode. Connect Firebase to enable auth & data persistence.</div>
+
+<!-- FLASH CONTAINER -->
+<div id="flash-container"></div>
+
+<!-- TOP BAR -->
+<header id="topbar">
+  <div class="topbar-logo" onclick="showPage('home')">
+    <div class="goat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+    <span>Zstudy</span>
+  </div>
+  <div class="topbar-actions">
+    <button class="search-btn" onclick="focusSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="cart-btn" onclick="showPage('cart')">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span class="cart-badge" id="cart-badge" style="display:none">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page">
+    <div class="hero-card">
+      <h1>Learn. Test. Grow. 🎯</h1>
+      <p>Explore courses, take tests, and watch lectures from top educators.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num" id="stat-courses">0</div><div class="lbl">Courses</div></div>
+        <div class="hero-stat"><div class="num" id="stat-tests">0</div><div class="lbl">Tests</div></div>
+        <div class="hero-stat"><div class="num" id="stat-lectures">0</div><div class="lbl">Lectures</div></div>
+      </div>
+    </div>
+
+    <div class="search-input-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="home-search" class="search-input" placeholder="Search courses, tests, lectures..." oninput="handleHomeSearch(this.value)">
+    </div>
+
+    <div class="filter-chips" id="home-chips">
+      <div class="chip active" onclick="setFilter('all',this)">All</div>
+      <div class="chip" onclick="setFilter('courses',this)">Courses</div>
+      <div class="chip" onclick="setFilter('tests',this)">Tests</div>
+      <div class="chip" onclick="setFilter('lectures',this)">Lectures</div>
+    </div>
+
+    <div id="home-featured" >
+      <div class="section-hdr"><h2>Featured</h2></div>
+      <div class="card-grid" id="home-card-grid">
+        <div class="color-card red" onclick="showSubview('courses')">
+          <div><div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3>Courses</h3><p>In-depth PDF courses</p></div>
+          <span class="card-count" id="cc-courses">0</span>
+          <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </div>
+        <div class="color-card yellow" onclick="showSubview('tests')">
+          <div><div class="card-icon"><i class="fa-solid fa-clipboard-question"></i></div>
+          <h3>Tests &amp; Quizzes</h3><p>Timed MCQ tests</p></div>
+          <span class="card-count" id="cc-tests">0</span>
+          <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </div>
+        <div class="color-card green" onclick="showSubview('lectures')" style="grid-column:span 2">
+          <div><div class="card-icon"><i class="fa-solid fa-video"></i></div>
+          <h3>Video Lectures</h3><p>Episode-based video series</p></div>
+          <span class="card-count" id="cc-lectures">0</span>
+          <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </div>
+      </div>
+
+      <div class="section-hdr"><h2>All Content</h2></div>
+      <div class="card-grid" id="home-all-grid"></div>
+    </div>
+
+    <!-- SUBVIEW -->
+    <div id="subview-container" style="display:none">
+      <div class="back-hdr">
+        <button class="back-btn" onclick="closeSubview()"><i class="fa-solid fa-arrow-left"></i></button>
+        <h2 id="subview-title">Courses</h2>
+      </div>
+      <div class="card-grid" id="subview-grid"></div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div id="page-dashboard" class="page">
+    <div id="dashboard-guest" style="display:none">
+      <div class="empty-state">
+        <i class="fa-solid fa-user-slash"></i>
+        <h3>Not Logged In</h3>
+        <p>Please log in to view your dashboard and purchased content.</p>
+        <button class="btn-primary" style="margin-top:16px;max-width:200px" onclick="showPage('login')">Login</button>
+      </div>
+    </div>
+    <div id="dashboard-user">
+      <div class="welcome-card">
+        <div class="welcome-avatar"><i class="fa-solid fa-user"></i></div>
+        <div class="welcome-text">
+          <h2 id="dash-name">Welcome back!</h2>
+          <p id="dash-email">user@example.com</p>
+        </div>
+      </div>
+      <div class="section-hdr"><h2>My Learning</h2></div>
+      <div class="card-grid">
+        <div class="color-card red" onclick="showDashSub('courses')">
+          <div><div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3>My Courses</h3><p>Purchased courses</p></div>
+          <span class="card-count" id="dc-courses">0</span>
+          <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </div>
+        <div class="color-card yellow" onclick="showDashSub('tests')">
+          <div><div class="card-icon"><i class="fa-solid fa-clipboard-question"></i></div>
+          <h3>My Tests</h3><p>Purchased tests</p></div>
+          <span class="card-count" id="dc-tests">0</span>
+          <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </div>
+        <div class="color-card green" onclick="showDashSub('lectures')" style="grid-column:span 2">
+          <div><div class="card-icon"><i class="fa-solid fa-video"></i></div>
+          <h3>My Lectures</h3><p>Purchased lecture series</p></div>
+          <span class="card-count" id="dc-lectures">0</span>
+          <i class="fa-solid fa-arrow-right card-arrow"></i>
+        </div>
+      </div>
+      <div id="dash-sub-container" style="display:none">
+        <div class="back-hdr">
+          <button class="back-btn" onclick="closeDashSub()"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 id="dash-sub-title">My Courses</h2>
+        </div>
+        <div class="card-grid" id="dash-sub-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIBRARY PAGE -->
+  <div id="page-library" class="page">
+    <div class="section-hdr"><h2>My Library</h2></div>
+    <div id="library-list"></div>
+  </div>
+
+  <!-- CART PAGE -->
+  <div id="page-cart" class="page">
+    <div class="section-hdr"><h2>Shopping Cart</h2></div>
+    <div id="cart-items-list"></div>
+    <div id="cart-empty" class="empty-state" style="display:none">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <h3>Cart is Empty</h3>
+      <p>Browse courses, tests, and lectures and add them to your cart.</p>
+    </div>
+    <div id="cart-summary-card" class="cart-summary" style="display:none">
+      <div class="summary-row"><span>Subtotal</span><span id="cart-subtotal">0 pts</span></div>
+      <div class="summary-row total"><span>Total</span><span id="cart-total">0 pts</span></div>
+      <button class="btn-primary" style="margin-top:12px" onclick="proceedToPayment()">
+        <i class="fa-solid fa-qrcode" style="margin-right:6px"></i>Proceed to Payment
+      </button>
+    </div>
+  </div>
+
+  <!-- PAYMENT PAGE -->
+  <div id="page-payment" class="page">
+    <div class="back-hdr">
+      <button class="back-btn" onclick="showPage('cart')"><i class="fa-solid fa-arrow-left"></i></button>
+      <h2>Payment</h2>
+    </div>
+    <div class="payment-card">
+      <h3 style="font-size:18px;font-weight:800;margin-bottom:4px">Scan to Pay</h3>
+      <p style="font-size:13px;color:var(--text2)">Total: <strong id="pay-total" style="color:var(--primary)">0 pts</strong></p>
+      <div class="qr-container">
+        <img id="qr-img" src="" alt="QR Code">
+      </div>
+      <div class="payment-info">
+        <p>1. Scan the QR code with your payment app<br>
+        2. Complete the transaction<br>
+        3. Enter your transaction reference below<br>
+        4. Wait for admin confirmation</p>
+      </div>
+      <div class="form-group">
+        <label>Transaction Reference *</label>
+        <input type="text" id="txn-ref-input" placeholder="e.g. TXN-2024-XXXXX">
+      </div>
+      <button class="btn-primary" onclick="submitPayment()">
+        <i class="fa-solid fa-paper-plane" style="margin-right:6px"></i>Submit Payment
+      </button>
+    </div>
+  </div>
+
+  <!-- ADMIN PAGE -->
+  <div id="page-admin" class="page">
+    <div class="section-hdr"><h2>Admin Panel</h2></div>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="adminTab('add',this)"><i class="fa-solid fa-plus"></i> Add</button>
+      <button class="tab-btn" onclick="adminTab('courses',this)"><i class="fa-solid fa-book-open"></i> Courses</button>
+      <button class="tab-btn" onclick="adminTab('tests',this)"><i class="fa-solid fa-clipboard-question"></i> Tests</button>
+      <button class="tab-btn" onclick="adminTab('lectures',this)"><i class="fa-solid fa-video"></i> Lectures</button>
+      <button class="tab-btn" onclick="adminTab('orders',this)"><i class="fa-solid fa-receipt"></i> Orders</button>
+    </div>
+
+    <!-- ADD CONTENT -->
+    <div id="admin-tab-add">
+      <div class="tab-bar" style="margin-bottom:12px">
+        <button class="tab-btn active" onclick="addContentTab('course',this)">Course</button>
+        <button class="tab-btn" onclick="addContentTab('test',this)">Test</button>
+        <button class="tab-btn" onclick="addContentTab('lecture',this)">Lecture</button>
+      </div>
+
+      <!-- ADD COURSE FORM -->
+      <div id="add-course-form" class="form-section">
+        <h3><i class="fa-solid fa-book-open" style="color:var(--red)"></i> Add Course</h3>
+        <div class="form-group"><label>Title</label><input type="text" id="c-title" placeholder="Course title"></div>
+        <div class="form-group"><label>Description</label><textarea id="c-desc" placeholder="Course description"></textarea></div>
+        <div class="form-group"><label>Category</label><input type="text" id="c-cat" placeholder="e.g. Programming, Design"></div>
+        <div class="form-group"><label>Price (pts)</label><input type="number" id="c-price" placeholder="e.g. 499"></div>
+        <div class="form-group"><label>Duration</label><input type="text" id="c-dur" placeholder="e.g. 8 hours"></div>
+        <div class="form-group"><label>Level</label>
+          <select id="c-level"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
+        </div>
+        <div class="form-group"><label>Cover Image</label><input type="file" id="c-img" accept="image/*" onchange="previewImage(this,'c-img-prev')"></div>
+        <img id="c-img-prev" style="width:100%;border-radius:12px;margin-bottom:12px;display:none;max-height:150px;object-fit:cover">
+        <div class="form-group"><label>PDF Path / URL</label><input type="text" id="c-pdf" placeholder="https://... or /files/course.pdf"></div>
+        <button class="btn-primary" onclick="saveCourse()"><i class="fa-solid fa-save" style="margin-right:6px"></i>Save Course</button>
+      </div>
+
+      <!-- ADD TEST FORM -->
+      <div id="add-test-form" class="form-section" style="display:none">
+        <h3><i class="fa-solid fa-clipboard-question" style="color:var(--yellow)"></i> Add Test</h3>
+        <div class="form-group"><label>Title</label><input type="text" id="t-title" placeholder="Test title"></div>
+        <div class="form-group"><label>Description</label><textarea id="t-desc" placeholder="Test description"></textarea></div>
+        <div class="form-group"><label>Category</label><input type="text" id="t-cat" placeholder="e.g. Math, Science"></div>
+        <div class="form-group"><label>Price (pts)</label><input type="number" id="t-price" placeholder="e.g. 199"></div>
+        <div class="form-group"><label>Time Limit (mins)</label><input type="number" id="t-time" placeholder="e.g. 30"></div>
+        <h4 style="font-size:14px;font-weight:700;margin-bottom:12px">Questions</h4>
+        <div id="questions-container"></div>
+        <button class="add-block-btn" onclick="addQuestion()"><i class="fa-solid fa-plus"></i> Add Question</button>
+        <button class="btn-primary" style="margin-top:16px" onclick="saveTest()"><i class="fa-solid fa-save" style="margin-right:6px"></i>Save Test</button>
+      </div>
+
+      <!-- ADD LECTURE FORM -->
+      <div id="add-lecture-form" class="form-section" style="display:none">
+        <h3><i class="fa-solid fa-video" style="color:var(--green)"></i> Add Lecture</h3>
+        <div class="form-group"><label>Title</label><input type="text" id="l-title" placeholder="Lecture title"></div>
+        <div class="form-group"><label>Description</label><textarea id="l-desc" placeholder="Lecture description"></textarea></div>
+        <div class="form-group"><label>Category</label><input type="text" id="l-cat" placeholder="e.g. Science, History"></div>
+        <div class="form-group"><label>Price (pts)</label><input type="number" id="l-price" placeholder="e.g. 299"></div>
+        <div class="form-group"><label>Cover Image</label><input type="file" id="l-img" accept="image/*" onchange="previewImage(this,'l-img-prev')"></div>
+        <img id="l-img-prev" style="width:100%;border-radius:12px;margin-bottom:12px;display:none;max-height:150px;object-fit:cover">
+        <h4 style="font-size:14px;font-weight:700;margin-bottom:12px">Episodes</h4>
+        <div id="episodes-container"></div>
+        <button class="add-block-btn" onclick="addEpisode()"><i class="fa-solid fa-plus"></i> Add Episode</button>
+        <button class="btn-primary" style="margin-top:16px" onclick="saveLecture()"><i class="fa-solid fa-save" style="margin-right:6px"></i>Save Lecture</button>
+      </div>
+    </div>
+
+    <!-- ADMIN LIST TABS -->
+    <div id="admin-tab-courses" style="display:none">
+      <div id="admin-courses-list"></div>
+    </div>
+    <div id="admin-tab-tests" style="display:none">
+      <div id="admin-tests-list"></div>
+    </div>
+    <div id="admin-tab-lectures" style="display:none">
+      <div id="admin-lectures-list"></div>
+    </div>
+    <div id="admin-tab-orders" style="display:none">
+      <div id="admin-orders-list"></div>
+    </div>
+  </div>
+
+  <!-- LOGIN PAGE -->
+  <div id="page-login" class="page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-logo">
+          <div class="goat-icon-lg"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h2>Welcome Back</h2>
+          <p>Sign in to continue learning</p>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" id="login-email" placeholder="you@example.com"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••"></div>
+        <button class="btn-primary" onclick="doLogin()"><i class="fa-solid fa-right-to-bracket" style="margin-right:6px"></i>Sign In</button>
+        <div class="divider">or</div>
+        <button class="btn-secondary" onclick="doGuestMode()"><i class="fa-solid fa-eye" style="margin-right:6px"></i>Continue as Guest</button>
+        <div class="auth-switch">Don't have an account? <a href="#" onclick="showPage('register')">Register</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGISTER PAGE -->
+  <div id="page-register" class="page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-logo">
+          <div class="goat-icon-lg"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h2>Create Account</h2>
+          <p>Start your learning journey today</p>
+        </div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="reg-name" placeholder="John Doe"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="reg-email" placeholder="you@example.com"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="reg-pass" placeholder="••••••••"></div>
+        <button class="btn-primary" onclick="doRegister()"><i class="fa-solid fa-user-plus" style="margin-right:6px"></i>Create Account</button>
+        <div class="auth-switch">Already have an account? <a href="#" onclick="showPage('login')">Sign In</a></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav id="bottomnav">
+  <button class="nav-item active" data-page="home" onclick="showPage('home')">
+    <i class="fa-solid fa-compass"></i><span>Explore</span>
+  </button>
+  <button class="nav-item" data-page="library" onclick="showPage('library')">
+    <i class="fa-solid fa-layer-group"></i><span>Library</span>
+  </button>
+  <button class="nav-fab" onclick="showPage('dashboard')">
+    <i class="fa-solid fa-chart-pie"></i>
+    <span>Dash</span>
+  </button>
+  <button class="nav-item" data-page="cart" onclick="showPage('cart')">
+    <i class="fa-solid fa-bag-shopping"></i><span>Cart</span>
+  </button>
+  <button class="nav-item" id="nav-admin" data-page="admin" onclick="showPage('admin')" style="display:none">
+    <i class="fa-solid fa-shield-halved"></i><span>Admin</span>
+  </button>
+  <button class="nav-item" id="nav-logout" onclick="doLogout()" style="display:none">
+    <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+  </button>
+  <button class="nav-item" id="nav-login" data-page="login" onclick="showPage('login')">
+    <i class="fa-solid fa-right-to-bracket"></i><span>Login</span>
+  </button>
+</nav>
+
+<!-- QUIZ OVERLAY -->
+<div class="overlay" id="quiz-overlay">
+  <div class="overlay-sheet">
+    <div class="overlay-handle"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <h3 id="quiz-title" style="font-size:17px;font-weight:800">Quiz</h3>
+      <button onclick="closeQuiz()" style="background:var(--bg2);border-radius:10px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--text2)">✕ Close</button>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span id="quiz-qcount" style="font-size:13px;color:var(--text2)">Q 1/10</span>
+      <span id="quiz-timer" style="font-size:13px;font-weight:700;color:var(--red)"><i class="fa-solid fa-clock"></i> 00:00</span>
+    </div>
+    <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-pbar" style="width:10%"></div></div>
+    <div id="quiz-body"></div>
+  </div>
+</div>
+
+<!-- VIDEO OVERLAY -->
+<div class="overlay" id="video-overlay">
+  <div class="overlay-sheet">
+    <div class="overlay-handle"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <h3 id="video-title" style="font-size:17px;font-weight:800">Lecture</h3>
+      <button onclick="closeVideo()" style="background:var(--bg2);border-radius:10px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--text2)">✕ Close</button>
+    </div>
+    <div class="video-wrapper">
+      <iframe id="video-iframe" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>
+    <h4 style="font-size:14px;font-weight:700;margin-bottom:12px">Episodes</h4>
+    <div class="episode-list" id="episode-list"></div>
+  </div>
+</div>
+
+<!-- CONTENT DETAIL OVERLAY -->
+<div class="overlay" id="detail-overlay">
+  <div class="overlay-sheet" id="detail-sheet">
+  </div>
+</div>
+
+<!-- FIREBASE + APP SCRIPT -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+import { getDatabase, ref, push, set, get, remove, onValue, update } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+// ══════════════════════════════════════
+//  FIREBASE CONFIG — replace with yours
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDz1G2XQBNTUQAkVL2o7DM23iCD1UVu6-g",
+  authDomain: "zstudy-9f588.firebaseapp.com",
+  databaseURL: "https://zstudy-9f588-default-rtdb.firebaseio.com",
+  projectId: "zstudy-9f588",
+  storageBucket: "zstudy-9f588.firebasestorage.app",
+  messagingSenderId: "115746944407",
+  appId: "1:115746944407:web:db98c80aff8c7bc05c80d2"
+};
+
+// ══════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════
+let app, auth, db;
+let mockMode = false;
+let currentUser = null;
+let isAdmin = false;
+const ADMIN_EMAIL = 'admin@zstudy.com';
+
+let cart = JSON.parse(localStorage.getItem('jg_cart') || '[]');
+let allContent = { courses: [], tests: [], lectures: [] };
+let purchasedIds = new Set();
+
+let quizState = {};
+let quizTimer = null;
+let currentLecture = null;
+let currentEpIdx = 0;
+
+// ══════════════════════════════════════════
+//  INIT FIREBASE
+// ══════════════════════════════════════════
+function initFirebase() {
+  try {
+    if (firebaseConfig.apiKey === 'YOUR_API_KEY') throw new Error('Placeholder config');
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getDatabase(app);
+    onAuthStateChanged(auth, handleAuthChange);
+    loadAllContent();
+  } catch(e) {
+    mockMode = true;
+    document.getElementById('mock-banner').style.display = 'block';
+    handleAuthChange(null);
+    loadMockData();
+  }
+}
+
+// ══════════════════════════════════════════
+//  AUTH
+// ══════════════════════════════════════════
+function handleAuthChange(user) {
+  currentUser = user;
+  isAdmin = user && user.email === ADMIN_EMAIL;
+  updateNavUI();
+  updateDashUI();
+  if (user && !mockMode) loadPurchasedItems(user.uid);
+}
+
+window.doLogin = async function() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  if (!email || !pass) return flash('Please fill all fields','error');
+  if (mockMode) {
+    const mockUser = { uid:'mock123', email, displayName: email.split('@')[0] };
+    currentUser = mockUser;
+    isAdmin = email === ADMIN_EMAIL;
+    updateNavUI(); updateDashUI();
+    showPage('home'); flash('Logged in (demo mode)','success'); return;
+  }
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    showPage('home'); flash('Welcome back!','success');
+  } catch(e) { flash(e.message,'error'); }
+};
+
+window.doRegister = async function() {
+  const name = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pass = document.getElementById('reg-pass').value;
+  if (!name||!email||!pass) return flash('Please fill all fields','error');
+  if (mockMode) {
+    currentUser = { uid:'mock123', email, displayName: name };
+    updateNavUI(); updateDashUI();
+    showPage('home'); flash('Account created (demo mode)','success'); return;
+  }
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: name });
+    showPage('home'); flash('Account created! Welcome!','success');
+  } catch(e) { flash(e.message,'error'); }
+};
+
+window.doLogout = async function() {
+  if (mockMode) {
+    currentUser = null; isAdmin = false;
+    updateNavUI(); updateDashUI();
+    showPage('home'); flash('Logged out','success'); return;
+  }
+  try {
+    await signOut(auth);
+    showPage('home'); flash('Logged out successfully','success');
+  } catch(e) { flash(e.message,'error'); }
+};
+
+window.doGuestMode = function() { showPage('home'); };
+
+function updateNavUI() {
+  document.getElementById('nav-login').style.display = currentUser ? 'none' : 'flex';
+  document.getElementById('nav-logout').style.display = currentUser ? 'flex' : 'none';
+  document.getElementById('nav-admin').style.display = isAdmin ? 'flex' : 'none';
+}
+
+function updateDashUI() {
+  const guestEl = document.getElementById('dashboard-guest');
+  const userEl = document.getElementById('dashboard-user');
+  if (!currentUser) { guestEl.style.display='flex'; userEl.style.display='none'; return; }
+  guestEl.style.display='none'; userEl.style.display='block';
+  document.getElementById('dash-name').textContent = 'Hi, ' + (currentUser.displayName || currentUser.email.split('@')[0]) + '! 👋';
+  document.getElementById('dash-email').textContent = currentUser.email;
+}
+
+// ══════════════════════════════════════════
+//  DATA LOADING
+// ══════════════════════════════════════════
+function loadAllContent() {
+  if (mockMode) return;
+  ['courses','tests','lectures'].forEach(type => {
+    onValue(ref(db, type), snap => {
+      allContent[type] = [];
+      snap.forEach(child => allContent[type].push({ id: child.key, ...child.val() }));
+      updateStats(); renderHome();
+    });
+  });
+}
+
+function loadMockData() {
+  allContent = {
+    courses: [
+      { id:'c1', title:'JavaScript Mastery', desc:'Complete JS from zero to hero with real projects.', category:'Programming', price:499, duration:'12 hours', level:'Beginner', cover:'', pdf:'' },
+      { id:'c2', title:'UI/UX Design Fundamentals', desc:'Learn design thinking, Figma, and prototyping.', category:'Design', price:399, duration:'8 hours', level:'Intermediate', cover:'', pdf:'' },
+      { id:'c3', title:'Python for Data Science', desc:'Pandas, NumPy, Matplotlib and ML basics.', category:'Data Science', price:599, duration:'15 hours', level:'Intermediate', cover:'', pdf:'' },
+    ],
+    tests: [
+      { id:'t1', title:'General Knowledge Quiz', desc:'Test your general knowledge across topics.', category:'General', price:99, timeLimit:15,
+        questions:[
+          {q:'What is the capital of France?',a:'London',b:'Berlin',c:'Paris',d:'Madrid',correct:'c'},
+          {q:'Which planet is largest?',a:'Earth',b:'Mars',c:'Venus',d:'Jupiter',correct:'d'},
+          {q:'Who wrote Romeo and Juliet?',a:'Dickens',b:'Shakespeare',c:'Austen',d:'Hemingway',correct:'b'},
+        ]
+      },
+      { id:'t2', title:'Basic Math Test', desc:'Arithmetic, algebra, and geometry.', category:'Math', price:149, timeLimit:20,
+        questions:[
+          {q:'What is 12 × 12?',a:'132',b:'144',c:'154',d:'124',correct:'b'},
+          {q:'Square root of 144?',a:'11',b:'13',c:'12',d:'14',correct:'c'},
+        ]
+      },
+    ],
+    lectures: [
+      { id:'l1', title:'React.js Full Course', desc:'Build modern web apps with React hooks, context, and routing.',
+        category:'Programming', price:699, cover:'',
+        episodes:[
+          {title:'Introduction to React', url:'https://www.youtube.com/embed/dGcsHMXbSOA', duration:'18:22'},
+          {title:'Components & Props', url:'https://www.youtube.com/embed/dpw9EHDh2bM', duration:'24:15'},
+          {title:'State & Hooks', url:'https://www.youtube.com/embed/dpw9EHDh2bM', duration:'31:08'},
+        ]
+      },
+      { id:'l2', title:'Photography Basics', desc:'Camera settings, composition, and post-processing.', category:'Arts', price:299, cover:'',
+        episodes:[
+          {title:'Understanding Exposure', url:'https://www.youtube.com/embed/B2HlRNNBqf4', duration:'12:45'},
+          {title:'Composition Rules', url:'https://www.youtube.com/embed/B2HlRNNBqf4', duration:'15:20'},
+        ]
+      },
+    ]
+  };
+  updateStats(); renderHome();
+}
+
+async function loadPurchasedItems(uid) {
+  if (!db) return;
+  const snap = await get(ref(db, `purchases/${uid}`));
+  purchasedIds = new Set();
+  snap.forEach(child => {
+    const d = child.val();
+    if (d.status === 'confirmed') d.items?.forEach(i => purchasedIds.add(i.id));
+  });
+  updateDashCounts();
+}
+
+// ══════════════════════════════════════════
+//  STATS
+// ══════════════════════════════════════════
+function updateStats() {
+  document.getElementById('stat-courses').textContent = allContent.courses.length;
+  document.getElementById('stat-tests').textContent = allContent.tests.length;
+  document.getElementById('stat-lectures').textContent = allContent.lectures.length;
+  document.getElementById('cc-courses').textContent = allContent.courses.length;
+  document.getElementById('cc-tests').textContent = allContent.tests.length;
+  document.getElementById('cc-lectures').textContent = allContent.lectures.length;
+}
+
+function updateDashCounts() {
+  const myC = allContent.courses.filter(i=>purchasedIds.has(i.id)).length;
+  const myT = allContent.tests.filter(i=>purchasedIds.has(i.id)).length;
+  const myL = allContent.lectures.filter(i=>purchasedIds.has(i.id)).length;
+  document.getElementById('dc-courses').textContent = myC;
+  document.getElementById('dc-tests').textContent = myT;
+  document.getElementById('dc-lectures').textContent = myL;
+}
+
+// ══════════════════════════════════════════
+//  RENDER HOME
+// ══════════════════════════════════════════
+function renderHome() {
+  const grid = document.getElementById('home-all-grid');
+  const all = [
+    ...allContent.courses.map(i=>({...i,type:'course'})),
+    ...allContent.tests.map(i=>({...i,type:'test'})),
+    ...allContent.lectures.map(i=>({...i,type:'lecture'}))
+  ];
+  grid.innerHTML = all.map((item,i) => itemCard(item,i)).join('');
+  updateStats();
+}
+
+function itemCard(item, idx) {
+  const colors = ['red','yellow','green'];
+  const color = colors[idx % 3];
+  const inCart = cart.some(c=>c.id===item.id);
+  const owned = purchasedIds.has(item.id);
+  const icons = { course:'fa-book-open', test:'fa-clipboard-question', lecture:'fa-video' };
+  const icon = icons[item.type] || 'fa-star';
+  const coverHtml = item.cover
+    ? `<img src="${item.cover}" alt="${item.title}">`
+    : `<i class="fa-solid ${icon}" style="color:var(--${color === 'yellow' ? 'yellow' : color === 'green' ? 'green' : 'red'})"></i>`;
+  const typeLabel = item.type.charAt(0).toUpperCase() + item.type.slice(1);
+  return `
+  <div class="item-card" onclick="openDetail('${item.type}','${item.id}')">
+    <div class="item-card-img">
+      ${coverHtml}
+      <div class="price-badge">${item.price} pts</div>
+    </div>
+    <div class="item-card-body">
+      <h4>${item.title}</h4>
+      <p>${item.desc?.slice(0,70)}${item.desc?.length>70?'...':''}</p>
+      <div class="item-card-meta">
+        <div class="item-meta-left">
+          <span class="meta-tag">${typeLabel}</span>
+          ${item.category ? `<span class="meta-tag">${item.category}</span>` : ''}
+        </div>
+        ${owned
+          ? `<div class="add-cart-btn in-cart" title="Owned"><i class="fa-solid fa-check"></i></div>`
+          : `<button class="add-cart-btn ${inCart?'in-cart':''}" onclick="event.stopPropagation();toggleCart('${item.type}','${item.id}')" title="${inCart?'Remove from cart':'Add to cart'}">
+              <i class="fa-solid ${inCart?'fa-check':'fa-plus'}"></i>
+            </button>`
+        }
+      </div>
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════
+//  SUBVIEW
+// ══════════════════════════════════════════
+let currentFilter = 'all';
+let currentSubview = null;
+
+window.showSubview = function(type) {
+  currentSubview = type;
+  document.getElementById('home-featured').style.display = 'none';
+  const sub = document.getElementById('subview-container');
+  sub.style.display = 'block';
+  const titles = { courses:'Courses', tests:'Tests & Quizzes', lectures:'Video Lectures' };
+  document.getElementById('subview-title').textContent = titles[type] || type;
+  const items = allContent[type] || [];
+  const grid = document.getElementById('subview-grid');
+  grid.innerHTML = items.length
+    ? items.map((item,i) => itemCard({...item, type: type.slice(0,-1)}, i)).join('')
+    : '<div class="empty-state" style="grid-column:span 2"><i class="fa-solid fa-inbox"></i><h3>No Content Yet</h3><p>Check back soon!</p></div>';
+};
+
+window.closeSubview = function() {
+  document.getElementById('home-featured').style.display = 'block';
+  document.getElementById('subview-container').style.display = 'none';
+};
+
+// ══════════════════════════════════════════
+//  DASHBOARD SUBVIEW
+// ══════════════════════════════════════════
+window.showDashSub = function(type) {
+  const titles = { courses:'My Courses', tests:'My Tests', lectures:'My Lectures' };
+  document.getElementById('dash-sub-title').textContent = titles[type];
+  document.getElementById('dash-sub-container').style.display = 'block';
+  const items = (allContent[type] || []).filter(i => purchasedIds.has(i.id));
+  const grid = document.getElementById('dash-sub-grid');
+  grid.innerHTML = items.length
+    ? items.map((item,i) => itemCard({...item, type: type.slice(0,-1)}, i)).join('')
+    : '<div class="empty-state" style="grid-column:span 2"><i class="fa-solid fa-lock-open"></i><h3>Nothing yet</h3><p>Purchase content to see it here.</p></div>';
+};
+
+window.closeDashSub = function() {
+  document.getElementById('dash-sub-container').style.display = 'none';
+};
+
+// ══════════════════════════════════════════
+//  LIBRARY
+// ══════════════════════════════════════════
+function renderLibrary() {
+  const list = document.getElementById('library-list');
+  const all = [
+    ...allContent.courses.filter(i=>purchasedIds.has(i.id)).map(i=>({...i,type:'course'})),
+    ...allContent.tests.filter(i=>purchasedIds.has(i.id)).map(i=>({...i,type:'test'})),
+    ...allContent.lectures.filter(i=>purchasedIds.has(i.id)).map(i=>({...i,type:'lecture'}))
+  ];
+  if (!all.length) {
+    list.innerHTML = '<div class="empty-state"><i class="fa-solid fa-layer-group"></i><h3>Library Empty</h3><p>Purchase content to access it here.</p></div>';
+    return;
+  }
+  const icons = { course:'fa-book-open', test:'fa-clipboard-question', lecture:'fa-video' };
+  list.innerHTML = all.map(item => `
+    <div class="library-item" onclick="openDetail('${item.type}','${item.id}')">
+      <div class="library-item-icon">
+        ${item.cover ? `<img src="${item.cover}">` : `<i class="fa-solid ${icons[item.type]}"></i>`}
+      </div>
+      <div class="library-item-info">
+        <h4>${item.title}</h4>
+        <p>${item.category || ''} ${item.duration || item.timeLimit ? '· ' + (item.duration || item.timeLimit + ' mins') : ''}</p>
+      </div>
+      <span class="library-item-badge">${item.type.charAt(0).toUpperCase()+item.type.slice(1)}</span>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════
+//  DETAIL OVERLAY
+// ══════════════════════════════════════════
+window.openDetail = function(type, id) {
+  const map = { course: 'courses', test: 'tests', lecture: 'lectures' };
+  const item = allContent[map[type]]?.find(i=>i.id===id);
+  if (!item) return;
+  const owned = purchasedIds.has(id);
+  const inCart = cart.some(c=>c.id===id);
+  const icons = { course:'fa-book-open', test:'fa-clipboard-question', lecture:'fa-video' };
+  const accentColors = { course:'var(--red)', test:'var(--yellow)', lecture:'var(--green)' };
+  const coverHtml = item.cover
+    ? `<img src="${item.cover}" style="width:100%;height:100%;object-fit:cover">`
+    : `<i class="fa-solid ${icons[type]}" style="font-size:56px;color:${accentColors[type]}"></i>`;
+  let actionBtn = '';
+  if (owned) {
+    if (type==='test') actionBtn = `<button class="btn-primary" style="margin-top:12px" onclick="closeDetail();startQuiz('${id}')"><i class="fa-solid fa-play" style="margin-right:6px"></i>Take Test</button>`;
+    else if (type==='lecture') actionBtn = `<button class="btn-primary" style="margin-top:12px" onclick="closeDetail();openVideo('${id}')"><i class="fa-solid fa-play" style="margin-right:6px"></i>Watch Lectures</button>`;
+    else if (type==='course' && item.pdf) actionBtn = `<a href="${item.pdf}" target="_blank"><button class="btn-primary" style="margin-top:12px"><i class="fa-solid fa-file-pdf" style="margin-right:6px"></i>Open PDF</button></a>`;
+  } else {
+    actionBtn = `<button class="btn-primary" style="margin-top:12px;background:${inCart?'var(--green)':''}" onclick="${inCart?`removeFromCart('${id}');closeDetail()`:`addToCart('${type}','${id}');closeDetail()`}">
+      <i class="fa-solid ${inCart?'fa-check':'fa-bag-shopping'}" style="margin-right:6px"></i>${inCart?'Added to Cart':'Add to Cart'}
+    </button>`;
+  }
+
+  let extraInfo = '';
+  if (type==='course') extraInfo = `<div style="display:flex;gap:8px;flex-wrap:wrap">
+    ${item.level?`<span class="meta-tag">${item.level}</span>`:''}
+    ${item.duration?`<span class="meta-tag"><i class="fa-solid fa-clock" style="margin-right:4px"></i>${item.duration}</span>`:''}
+  </div>`;
+  if (type==='test') extraInfo = `<div style="display:flex;gap:8px;flex-wrap:wrap">
+    ${item.timeLimit?`<span class="meta-tag"><i class="fa-solid fa-clock" style="margin-right:4px"></i>${item.timeLimit} mins</span>`:''}
+    ${item.questions?`<span class="meta-tag">${item.questions.length} Questions</span>`:''}
+  </div>`;
+  if (type==='lecture') extraInfo = `<div style="display:flex;gap:8px;flex-wrap:wrap">
+    ${item.episodes?`<span class="meta-tag">${item.episodes.length} Episodes</span>`:''}
+  </div>`;
+
+  document.getElementById('detail-sheet').innerHTML = `
+    <div class="overlay-handle"></div>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+      <button onclick="closeDetail()" style="background:var(--bg2);border-radius:10px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--text2)">✕ Close</button>
+    </div>
+    <div class="detail-cover">${coverHtml}</div>
+    <div class="detail-info">
+      <div class="detail-tags">
+        <span class="meta-tag">${type.charAt(0).toUpperCase()+type.slice(1)}</span>
+        ${item.category?`<span class="meta-tag">${item.category}</span>`:''}
+        ${owned?`<span class="status-badge confirmed"><i class="fa-solid fa-check"></i> Owned</span>`:''}
+      </div>
+      <div class="detail-title">${item.title}</div>
+      <div class="detail-desc">${item.desc || ''}</div>
+      ${extraInfo}
+    </div>
+    <div style="background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)">
+      <div class="detail-price">${item.price} pts</div>
+      <div class="detail-price-sub">${owned ? 'You own this content' : 'One-time purchase'}</div>
+      ${actionBtn}
+    </div>
+  `;
+  document.getElementById('detail-overlay').classList.add('active');
+};
+window.closeDetail = function() { document.getElementById('detail-overlay').classList.remove('active'); };
+
+// ══════════════════════════════════════════
+//  CART
+// ══════════════════════════════════════════
+function saveCart() { localStorage.setItem('jg_cart', JSON.stringify(cart)); updateCartBadge(); }
+
+function updateCartBadge() {
+  const badge = document.getElementById('cart-badge');
+  badge.textContent = cart.length;
+  badge.style.display = cart.length ? 'flex' : 'none';
+}
+
+window.toggleCart = function(type, id) {
+  const idx = cart.findIndex(c=>c.id===id);
+  if (idx >= 0) { cart.splice(idx,1); flash('Removed from cart','success'); }
+  else {
+    const map = { course:'courses', test:'tests', lecture:'lectures' };
+    const item = allContent[map[type]]?.find(i=>i.id===id);
+    if (item) { cart.push({ id, type, title: item.title, price: item.price }); flash('Added to cart!','success'); }
+  }
+  saveCart(); renderHome();
+};
+
+window.addToCart = function(type, id) {
+  if (cart.some(c=>c.id===id)) return;
+  const map = { course:'courses', test:'tests', lecture:'lectures' };
+  const item = allContent[map[type]]?.find(i=>i.id===id);
+  if (item) { cart.push({ id, type, title: item.title, price: item.price }); saveCart(); flash('Added to cart!','success'); renderHome(); }
+};
+
+window.removeFromCart = function(id) {
+  cart = cart.filter(c=>c.id!==id); saveCart(); renderCart(); renderHome();
+};
+
+function renderCart() {
+  const list = document.getElementById('cart-items-list');
+  const empty = document.getElementById('cart-empty');
+  const summary = document.getElementById('cart-summary-card');
+  if (!cart.length) {
+    list.innerHTML = ''; empty.style.display='flex'; summary.style.display='none'; return;
+  }
+  empty.style.display='none'; summary.style.display='block';
+  const typeIcons = { course:'fa-book-open', test:'fa-clipboard-question', lecture:'fa-video' };
+  const typeColors = { course:'var(--red)', test:'var(--yellow)', lecture:'var(--green)' };
+  list.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-icon" style="background:rgba(0,0,0,0.05)">
+        <i class="fa-solid ${typeIcons[item.type]||'fa-star'}" style="color:${typeColors[item.type]||'var(--primary)'}"></i>
+      </div>
+      <div class="cart-item-info">
+        <h4>${item.title}</h4>
+        <p>${item.type.charAt(0).toUpperCase()+item.type.slice(1)}</p>
+      </div>
+      <div class="cart-item-price">${item.price} pts</div>
+      <button class="cart-remove icon-btn delete" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-trash"></i></button>
+    </div>`).join('');
+  const total = cart.reduce((s,i)=>s+Number(i.price),0);
+  document.getElementById('cart-subtotal').textContent = total + ' pts';
+  document.getElementById('cart-total').textContent = total + ' pts';
+}
+
+window.proceedToPayment = function() {
+  if (!currentUser) { flash('Please log in first','error'); showPage('login'); return; }
+  if (!cart.length) return;
+  const total = cart.reduce((s,i)=>s+Number(i.price),0);
+  document.getElementById('pay-total').textContent = total + ' pts';
+  const qrData = encodeURIComponent(`Zstudy Payment | Total: ${total}pts | User: ${currentUser.email}`);
+  document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${qrData}`;
+  showPage('payment');
+};
+
+window.submitPayment = async function() {
+  if (!currentUser) return;
+  const ref_ = document.getElementById('txn-ref-input').value.trim();
+  if (!ref_) return flash('Please enter transaction reference','error');
+  const order = {
+    userId: currentUser.uid,
+    userEmail: currentUser.email,
+    items: cart,
+    total: cart.reduce((s,i)=>s+Number(i.price),0),
+    txnRef: ref_,
+    status: 'pending',
+    createdAt: Date.now()
+  };
+  if (mockMode) {
+    flash('Order submitted! Awaiting admin verification.','success');
+    cart = []; saveCart(); renderCart(); showPage('home'); return;
+  }
+  try {
+    await push(ref(db, `purchases/${currentUser.uid}`), order);
+    await push(ref(db, 'orders'), order);
+    cart = []; saveCart(); renderCart();
+    flash('Order submitted! Awaiting admin verification.','success');
+    showPage('home');
+  } catch(e) { flash(e.message,'error'); }
+};
+
+// ══════════════════════════════════════════
+//  QUIZ
+// ══════════════════════════════════════════
+window.startQuiz = function(testId) {
+  const test = allContent.tests.find(t=>t.id===testId);
+  if (!test) return;
+  quizState = { test, current:0, score:0, answered:false, timerSecs: (test.timeLimit||30)*60 };
+  document.getElementById('quiz-title').textContent = test.title;
+  renderQuestion();
+  startQuizTimer();
+  document.getElementById('quiz-overlay').classList.add('active');
+};
+
+function renderQuestion() {
+  const { test, current } = quizState;
+  if (current >= test.questions.length) { showQuizResult(); return; }
+  const q = test.questions[current];
+  const total = test.questions.length;
+  document.getElementById('quiz-qcount').textContent = `Q ${current+1}/${total}`;
+  document.getElementById('quiz-pbar').style.width = `${((current+1)/total)*100}%`;
+  const letters = ['a','b','c','d'];
+  document.getElementById('quiz-body').innerHTML = `
+    <div class="quiz-question">${q.q}</div>
+    ${letters.filter(l=>q[l]).map(l=>`
+      <div class="quiz-option" id="opt-${l}" onclick="answerQuiz('${l}')">
+        <div class="option-letter">${l.toUpperCase()}</div>
+        <span>${q[l]}</span>
+      </div>`).join('')}
+    <div id="quiz-next-btn" style="display:none;margin-top:16px">
+      <button class="btn-primary" onclick="nextQuestion()">
+        ${current+1===total?'See Results':'Next Question'} <i class="fa-solid fa-arrow-right" style="margin-left:6px"></i>
+      </button>
+    </div>`;
+  quizState.answered = false;
+}
+
+window.answerQuiz = function(chosen) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const q = quizState.test.questions[quizState.current];
+  const correct = q.correct;
+  document.querySelectorAll('.quiz-option').forEach(el => el.classList.add('disabled'));
+  const letters = ['a','b','c','d'];
+  letters.filter(l=>q[l]).forEach(l => {
+    const el = document.getElementById('opt-'+l);
+    if (l===correct) el.classList.add('correct');
+    else if (l===chosen) el.classList.add('wrong');
+  });
+  if (chosen===correct) quizState.score++;
+  document.getElementById('quiz-next-btn').style.display='block';
+};
+
+window.nextQuestion = function() {
+  quizState.current++;
+  renderQuestion();
+};
+
+function showQuizResult() {
+  clearInterval(quizTimer);
+  const { score, test } = quizState;
+  const total = test.questions.length;
+  const pct = Math.round((score/total)*100);
+  document.getElementById('quiz-body').innerHTML = `
+    <div class="score-card">
+      <div class="score-circle">
+        <div class="score-num">${pct}%</div>
+        <div class="score-lbl">Score</div>
+      </div>
+      <h3 style="font-size:20px;font-weight:800;margin-bottom:8px">${pct>=70?'Great Job! 🎉':'Keep Practicing 💪'}</h3>
+      <p style="color:var(--text2);font-size:14px">You got <strong>${score}/${total}</strong> questions correct</p>
+      <button class="btn-primary" style="margin-top:20px" onclick="closeQuiz()">Done</button>
+    </div>`;
+  document.getElementById('quiz-pbar').style.width='100%';
+  document.getElementById('quiz-qcount').textContent = 'Complete!';
+  document.getElementById('quiz-timer').textContent = '';
+}
+
+function startQuizTimer() {
+  clearInterval(quizTimer);
+  quizTimer = setInterval(() => {
+    quizState.timerSecs--;
+    const m = Math.floor(quizState.timerSecs/60).toString().padStart(2,'0');
+    const s = (quizState.timerSecs%60).toString().padStart(2,'0');
+    document.getElementById('quiz-timer').innerHTML = `<i class="fa-solid fa-clock"></i> ${m}:${s}`;
+    if (quizState.timerSecs<=0) { clearInterval(quizTimer); showQuizResult(); }
+  },1000);
+}
+
+window.closeQuiz = function() {
+  clearInterval(quizTimer);
+  document.getElementById('quiz-overlay').classList.remove('active');
+};
+
+// ══════════════════════════════════════════
+//  VIDEO PLAYER
+// ══════════════════════════════════════════
+window.openVideo = function(lectureId) {
+  currentLecture = allContent.lectures.find(l=>l.id===lectureId);
+  if (!currentLecture) return;
+  currentEpIdx = 0;
+  document.getElementById('video-title').textContent = currentLecture.title;
+  renderEpisodeList();
+  playEpisode(0);
+  document.getElementById('video-overlay').classList.add('active');
+};
+
+function renderEpisodeList() {
+  const list = document.getElementById('episode-list');
+  list.innerHTML = (currentLecture.episodes||[]).map((ep,i)=>`
+    <div class="ep-item ${i===currentEpIdx?'active':''}" onclick="playEpisode(${i})">
+      <div class="ep-num">${i+1}</div>
+      <div class="ep-info">
+        <h5>${ep.title}</h5>
+        <p>${ep.duration||''}</p>
+      </div>
+      <i class="fa-solid ${i===currentEpIdx?'fa-pause':'fa-play'} ep-play-icon"></i>
+    </div>`).join('');
+}
+
+function playEpisode(idx) {
+  currentEpIdx = idx;
+  const ep = currentLecture.episodes[idx];
+  if (!ep) return;
+  let url = ep.url;
+  if (url.includes('youtube.com/watch')) {
+    const vid = new URL(url).searchParams.get('v');
+    url = `https://www.youtube.com/embed/${vid}?autoplay=1`;
+  } else if (url.includes('youtu.be/')) {
+    const vid = url.split('youtu.be/')[1].split('?')[0];
+    url = `https://www.youtube.com/embed/${vid}?autoplay=1`;
+  } else if (!url.includes('/embed/')) {
+    url += (url.includes('?')?'&':'?') + 'autoplay=1';
+  }
+  document.getElementById('video-iframe').src = url;
+  renderEpisodeList();
+}
+
+window.closeVideo = function() {
+  document.getElementById('video-iframe').src = '';
+  document.getElementById('video-overlay').classList.remove('active');
+};
+
+// ══════════════════════════════════════════
+//  ADMIN
+// ══════════════════════════════════════════
+window.adminTab = function(tab, btn) {
+  document.querySelectorAll('#page-admin > .tab-bar .tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['add','courses','tests','lectures','orders'].forEach(t => {
+    const el = document.getElementById(`admin-tab-${t}`);
+    if (el) el.style.display = t===tab ? 'block' : 'none';
+  });
+  if (tab==='courses') renderAdminList('courses');
+  if (tab==='tests') renderAdminList('tests');
+  if (tab==='lectures') renderAdminList('lectures');
+  if (tab==='orders') renderAdminOrders();
+};
+
+window.addContentTab = function(type, btn) {
+  document.querySelectorAll('#admin-tab-add > .tab-bar .tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['course','test','lecture'].forEach(t => {
+    document.getElementById(`add-${t}-form`).style.display = t===type?'block':'none';
+  });
+};
+
+function renderAdminList(type) {
+  const containerId = `admin-${type}-list`;
+  const items = allContent[type] || [];
+  const icons = { courses:'fa-book-open', tests:'fa-clipboard-question', lectures:'fa-video' };
+  document.getElementById(containerId).innerHTML = items.length
+    ? items.map(item=>`
+      <div class="admin-item">
+        <div class="admin-item-icon">
+          ${item.cover?`<img src="${item.cover}">`:`<i class="fa-solid ${icons[type]}"></i>`}
+        </div>
+        <div class="admin-item-info">
+          <h4>${item.title}</h4>
+          <p>${item.price} pts · ${item.category||''}</p>
+        </div>
+        <div class="admin-item-actions">
+          <button class="icon-btn delete" onclick="deleteContent('${type}','${item.id}')"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>`).join('')
+    : '<div class="empty-state"><i class="fa-solid fa-inbox"></i><h3>No content</h3></div>';
+}
+
+async function renderAdminOrders() {
+  const list = document.getElementById('admin-orders-list');
+  list.innerHTML = '<div class="loading-spinner"><div class="spinner"></div></div>';
+  if (mockMode) { list.innerHTML = '<div class="empty-state"><i class="fa-solid fa-receipt"></i><h3>No Orders</h3><p>Orders will appear here in live mode.</p></div>'; return; }
+  try {
+    const snap = await get(ref(db,'orders'));
+    if (!snap.exists()) { list.innerHTML = '<div class="empty-state"><i class="fa-solid fa-receipt"></i><h3>No Orders</h3></div>'; return; }
+    const orders = [];
+    snap.forEach(c=>orders.push({id:c.key,...c.val()}));
+    list.innerHTML = orders.reverse().map(o=>`
+      <div class="order-item">
+        <div class="order-hdr">
+          <span style="font-size:13px;font-weight:700">${o.userEmail||o.userId}</span>
+          <span class="status-badge ${o.status}">${o.status}</span>
+        </div>
+        <div class="order-items-list">${(o.items||[]).map(i=>i.title).join(', ')}</div>
+        <div class="order-ref">Ref: ${o.txnRef||'—'}</div>
+        <div class="order-footer" style="margin-top:10px">
+          <span class="order-total">${o.total} pts</span>
+          ${o.status==='pending'?`<div style="display:flex;gap:6px">
+            <button class="icon-btn verify" onclick="verifyOrder('${o.id}','${o.userId}',true)"><i class="fa-solid fa-check"></i></button>
+            <button class="icon-btn delete" onclick="verifyOrder('${o.id}','${o.userId}',false)"><i class="fa-solid fa-times"></i></button>
+          </div>`:''}
+        </div>
+      </div>`).join('');
+  } catch(e) { list.innerHTML = `<div class="empty-state"><i class="fa-solid fa-exclamation-circle"></i><h3>Error</h3><p>${e.message}</p></div>`; }
+}
+
+window.verifyOrder = async function(orderId, userId, approve) {
+  if (mockMode) return flash('Cannot verify in demo mode','error');
+  const status = approve ? 'confirmed' : 'rejected';
+  try {
+    await update(ref(db,`orders/${orderId}`), { status });
+    if (approve) {
+      const orderSnap = await get(ref(db,`orders/${orderId}`));
+      const order = orderSnap.val();
+      const userOrdersSnap = await get(ref(db,`purchases/${userId}`));
+      userOrdersSnap.forEach(async c => {
+        if (c.val().txnRef === order.txnRef) {
+          await update(ref(db,`purchases/${userId}/${c.key}`), { status: 'confirmed' });
+        }
+      });
+    }
+    flash(approve ? 'Order confirmed!' : 'Order rejected','success');
+    renderAdminOrders();
+  } catch(e) { flash(e.message,'error'); }
+};
+
+window.deleteContent = async function(type, id) {
+  if (!confirm('Delete this content?')) return;
+  if (mockMode) {
+    allContent[type] = allContent[type].filter(i=>i.id!==id);
+    renderAdminList(type); renderHome(); updateStats(); flash('Deleted','success'); return;
+  }
+  try {
+    await remove(ref(db,`${type}/${id}`));
+    flash('Deleted successfully','success');
+  } catch(e) { flash(e.message,'error'); }
+};
+
+// SAVE CONTENT
+window.saveCourse = async function() {
+  const title = document.getElementById('c-title').value.trim();
+  const desc = document.getElementById('c-desc').value.trim();
+  const cat = document.getElementById('c-cat').value.trim();
+  const price = parseInt(document.getElementById('c-price').value) || 0;
+  const dur = document.getElementById('c-dur').value.trim();
+  const level = document.getElementById('c-level').value;
+  const pdf = document.getElementById('c-pdf').value.trim();
+  const cover = document.getElementById('c-img-prev').src || '';
+  if (!title) return flash('Title is required','error');
+  const data = { title, desc, category:cat, price, duration:dur, level, pdf, cover: cover.startsWith('data:')?cover:'' };
+  if (mockMode) {
+    allContent.courses.push({ id:'c'+Date.now(), ...data });
+    renderHome(); updateStats(); flash('Course added!','success'); return;
+  }
+  try { await push(ref(db,'courses'), data); flash('Course saved!','success'); } catch(e) { flash(e.message,'error'); }
+};
+
+window.saveTest = async function() {
+  const title = document.getElementById('t-title').value.trim();
+  const desc = document.getElementById('t-desc').value.trim();
+  const cat = document.getElementById('t-cat').value.trim();
+  const price = parseInt(document.getElementById('t-price').value) || 0;
+  const timeLimit = parseInt(document.getElementById('t-time').value) || 30;
+  if (!title) return flash('Title is required','error');
+  const questions = [];
+  document.querySelectorAll('.question-block').forEach(blk => {
+    questions.push({
+      q: blk.querySelector('.q-text')?.value,
+      a: blk.querySelector('.q-a')?.value,
+      b: blk.querySelector('.q-b')?.value,
+      c: blk.querySelector('.q-c')?.value,
+      d: blk.querySelector('.q-d')?.value,
+      correct: blk.querySelector('.q-correct')?.value
+    });
+  });
+  if (!questions.length) return flash('Add at least one question','error');
+  const data = { title, desc, category:cat, price, timeLimit, questions };
+  if (mockMode) { allContent.tests.push({ id:'t'+Date.now(), ...data }); renderHome(); updateStats(); flash('Test added!','success'); return; }
+  try { await push(ref(db,'tests'), data); flash('Test saved!','success'); } catch(e) { flash(e.message,'error'); }
+};
+
+window.saveLecture = async function() {
+  const title = document.getElementById('l-title').value.trim();
+  const desc = document.getElementById('l-desc').value.trim();
+  const cat = document.getElementById('l-cat').value.trim();
+  const price = parseInt(document.getElementById('l-price').value) || 0;
+  const cover = document.getElementById('l-img-prev').src || '';
+  if (!title) return flash('Title is required','error');
+  const episodes = [];
+  document.querySelectorAll('.episode-block').forEach(blk => {
+    episodes.push({
+      title: blk.querySelector('.ep-title')?.value,
+      url: blk.querySelector('.ep-url')?.value,
+      duration: blk.querySelector('.ep-dur')?.value
+    });
+  });
+  const data = { title, desc, category:cat, price, cover: cover.startsWith('data:')?cover:'', episodes };
+  if (mockMode) { allContent.lectures.push({ id:'l'+Date.now(), ...data }); renderHome(); updateStats(); flash('Lecture added!','success'); return; }
+  try { await push(ref(db,'lectures'), data); flash('Lecture saved!','success'); } catch(e) { flash(e.message,'error'); }
+};
+
+// DYNAMIC FORM BUILDERS
+window.addQuestion = function() {
+  const container = document.getElementById('questions-container');
+  const num = container.children.length + 1;
+  const div = document.createElement('div');
+  div.className = 'question-block';
+  div.innerHTML = `
+    <div class="q-num">Question ${num}</div>
+    <button class="block-remove" onclick="this.parentElement.remove()"><i class="fa-solid fa-times"></i></button>
+    <div class="form-group"><label>Question</label><input type="text" class="q-text" placeholder="Enter question"></div>
+    <div class="form-group"><label>Option A</label><input type="text" class="q-a" placeholder="Option A"></div>
+    <div class="form-group"><label>Option B</label><input type="text" class="q-b" placeholder="Option B"></div>
+    <div class="form-group"><label>Option C</label><input type="text" class="q-c" placeholder="Option C"></div>
+    <div class="form-group"><label>Option D</label><input type="text" class="q-d" placeholder="Option D"></div>
+    <div class="form-group"><label>Correct Answer</label>
+      <select class="q-correct"><option value="a">A</option><option value="b">B</option><option value="c">C</option><option value="d">D</option></select>
+    </div>`;
+  container.appendChild(div);
+};
+
+window.addEpisode = function() {
+  const container = document.getElementById('episodes-container');
+  const num = container.children.length + 1;
+  const div = document.createElement('div');
+  div.className = 'episode-block';
+  div.innerHTML = `
+    <div class="q-num">Episode ${num}</div>
+    <button class="block-remove" onclick="this.parentElement.remove()"><i class="fa-solid fa-times"></i></button>
+    <div class="form-group"><label>Episode Title</label><input type="text" class="ep-title" placeholder="Episode title"></div>
+    <div class="form-group"><label>Video URL (YouTube/direct)</label><input type="text" class="ep-url" placeholder="https://youtube.com/..."></div>
+    <div class="form-group"><label>Duration</label><input type="text" class="ep-dur" placeholder="e.g. 15:30"></div>`;
+  container.appendChild(div);
+};
+
+// IMAGE COMPRESSION
+window.previewImage = function(input, previewId) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const MAX = 400;
+      let w = img.width, h = img.height;
+      if (w > h) { if (w > MAX) { h = h*(MAX/w); w = MAX; } }
+      else { if (h > MAX) { w = w*(MAX/h); h = MAX; } }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      const dataUrl = canvas.toDataURL('image/jpeg',0.75);
+      const prev = document.getElementById(previewId);
+      prev.src = dataUrl; prev.style.display='block';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+};
+
+// ══════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════
+window.showPage = function(page) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el = document.getElementById(`page-${page}`);
+  if (el) el.classList.add('active');
+  document.querySelectorAll('.nav-item[data-page]').forEach(n=>n.classList.remove('active'));
+  const navBtn = document.querySelector(`.nav-item[data-page="${page}"]`);
+  if (navBtn) navBtn.classList.add('active');
+  // Page-specific init
+  if (page==='cart') renderCart();
+  if (page==='library') { if(!currentUser){flash('Login to view library','error');showPage('login');return;} renderLibrary(); }
+  if (page==='admin') { if(!isAdmin){flash('Access denied','error');showPage('home');return;} }
+  if (page==='dashboard') updateDashUI();
+  window.scrollTo(0,0);
+};
+
+window.focusSearch = function() {
+  showPage('home');
+  setTimeout(()=>document.getElementById('home-search').focus(), 300);
+};
+
+window.handleHomeSearch = function(val) {
+  if (!val.trim()) { renderHome(); return; }
+  const q = val.toLowerCase();
+  const grid = document.getElementById('home-all-grid');
+  const all = [
+    ...allContent.courses.map(i=>({...i,type:'course'})),
+    ...allContent.tests.map(i=>({...i,type:'test'})),
+    ...allContent.lectures.map(i=>({...i,type:'lecture'}))
+  ].filter(i => i.title.toLowerCase().includes(q) || (i.desc||'').toLowerCase().includes(q) || (i.category||'').toLowerCase().includes(q));
+  grid.innerHTML = all.length ? all.map((item,i)=>itemCard(item,i)).join('') : '<div class="empty-state" style="grid-column:span 2"><i class="fa-solid fa-search"></i><h3>No results</h3></div>';
+};
+
+window.setFilter = function(filter, el) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-chips .chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  if (filter==='all') { renderHome(); return; }
+  const map = { courses:'courses', tests:'tests', lectures:'lectures' };
+  const type = map[filter];
+  const items = (allContent[type]||[]).map(i=>({...i, type: type.slice(0,-1)}));
+  document.getElementById('home-all-grid').innerHTML = items.length
+    ? items.map((item,i)=>itemCard(item,i)).join('')
+    : '<div class="empty-state" style="grid-column:span 2"><i class="fa-solid fa-inbox"></i><h3>No content</h3></div>';
+};
+
+// ══════════════════════════════════════════
+//  FLASH NOTIFICATIONS
+// ══════════════════════════════════════════
+window.flash = function(msg, type='success') {
+  const container = document.getElementById('flash-container');
+  const div = document.createElement('div');
+  div.className = `flash ${type}`;
+  div.innerHTML = `<i class="fa-solid fa-${type==='success'?'circle-check':'circle-exclamation'}"></i> ${msg}`;
+  container.appendChild(div);
+  setTimeout(()=>div.remove(), 3100);
+};
+
+// ══════════════════════════════════════════
+//  CLOSE OVERLAYS ON BACKDROP CLICK
+// ══════════════════════════════════════════
+document.querySelectorAll('.overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if(e.target===ov) { ov.classList.remove('active'); if(ov.id==='quiz-overlay')clearInterval(quizTimer); if(ov.id==='video-overlay')document.getElementById('video-iframe').src=''; } });
+});
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+updateCartBadge();
+initFirebase();
+showPage('home');
+
+</script>
+</body>
+</html>
